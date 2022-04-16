@@ -1,0 +1,22 @@
+{
+  "name": "touchless-camera",
+  "version": "1.0.0",
+  "description": "Diana Lin, Stephanie Song, Ayaan Siddiqui",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dianalin2/hacktj-2022-project.git"
+  },
+  "author": "Diana Lin, Stephanie Song, Ayaan Siddiqui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dianalin2/hacktj-2022-project/issues"
+  },
+  "homepage": "https://github.com/dianalin2/hacktj-2022-project#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
