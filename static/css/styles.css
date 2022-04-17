@@ -9,25 +9,35 @@ body {
 }
 
 .square {
-    float: left;
-    background-color: #deaaaa;
     width: 48%;
-    /* height: ; */
-    margin: 1em;
-}
-.square2{
-    float: right;
-    background-color: rgb(203, 92, 92);
     width: 48%;
-    /* height: ; */
     margin: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2em;
+    box-shadow: 0 0.5em 1em 0 rgba(0, 0, 0, 0.2);
 }
-.horiz{
+
+.square h2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2em 0;
+    font-size: x-large;
+}
+
+.horiz {
     display: flex;
     justify-content: center;
-    height : 72%;
+    height: 72%;
+    width: 100%;
 }
-.botpanel{
+.botpanel {
     display: flex;
     justify-content: space-evenly;
 }
