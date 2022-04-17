@@ -142,7 +142,7 @@ body {
 }
 
 #countdown {
-  font-size: xx-large;
   display: inline-block;
   width: 3em;
+  font-weight: bold;
 }

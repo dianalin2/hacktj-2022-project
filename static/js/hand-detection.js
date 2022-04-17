@@ -90,7 +90,7 @@ function setCountdown(time) {
     document.getElementById('countdown').innerHTML = count / 1000;
 
     if (count <= 0) {
-        milliseconds = 0;
+        count = 0;
         clearInterval(currentCountdown);
         currentCountdown = null;
         takeScreenshot();
