@@ -14,10 +14,15 @@
 </head>
 
 <body>
+    <div id="overlay">
+        <img id="screenshot-pic" alt="screenshot" onclick="openImageInNewTab(this);">
+    </div>
+    <br>
     <h1 class="text-xl">
         <font size="+3">Touchless Camera</font>
     </h1>
-    <div class="horiz">
+    <br>
+    <div id="videos" class="horiz">
         <div class="square" style="background-color: #deaaaa; float: left;">
             <video id="video" width="642" height="428" style="display:none;"></video>
             <canvas id="output-1" width="642" height="428"></canvas>
