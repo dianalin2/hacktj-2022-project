@@ -5,6 +5,8 @@ const FPS = 30;
 
 let currentCountdown = null;
 
+let milliseconds = 1000;
+
 navigator.mediaDevices.getUserMedia({ video: true, audio: false })
     .then(stream => {
         video.srcObject = stream;
@@ -48,21 +50,26 @@ function onOpenCvLoad() {
             function processVideo() {
                 let begin = Date.now();
                 cap.read(src);
-                cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY);
 
-                let msize = new cv.Size(0, 0);
+                if (!document.getElementById('overlay').classList.contains('active')) {
+                    cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY);
 
-                handCascade.detectMultiScale(gray, hands, 1.1, 15, 0, msize, msize);
+                    let msize = new cv.Size(0, 0);
 
-                for (let i = 0; i < hands.size(); ++i) {
-                    let point1 = new cv.Point(hands.get(i).x, hands.get(i).y);
-                    let point2 = new cv.Point(hands.get(i).x + hands.get(i).width,
-                        hands.get(i).y + hands.get(i).height);
-                    cv.rectangle(src, point1, point2, [255, 0, 0, 255], 5, cv.LINE_8, 0);
-                }
+                    handCascade.detectMultiScale(gray, hands, 1.1, 15, 0, msize, msize);
 
-                if (hands.size() > 0 && currentCountdown == null) {
-                    currentCountdown = setTimeout(setCountdown, 1000);
+                    for (let i = 0; i < hands.size(); ++i) {
+                        let point1 = new cv.Point(hands.get(i).x, hands.get(i).y);
+                        let point2 = new cv.Point(hands.get(i).x + hands.get(i).width,
+                            hands.get(i).y + hands.get(i).height);
+                        cv.rectangle(src, point1, point2, [255, 0, 0, 255], 5, cv.LINE_8, 0);
+                    }
+
+                    if (hands.size() > 0 && currentCountdown == null) {
+                        currCountdown = milliseconds;
+                        document.getElementById('countdown').innerHTML = milliseconds / 1000;
+                        currentCountdown = setInterval(setCountdown, 1000);
+                    }
                 }
 
                 cv.imshow(output1.id, src);
@@ -75,7 +82,22 @@ function onOpenCvLoad() {
     }
 }
 
+let currCountdown = milliseconds;
+
 function setCountdown(time) {
+    currCountdown -= 1000;
+
+    document.getElementById('countdown').innerHTML = currCountdown / 1000;
+
+    if (currCountdown <= 0) {
+        milliseconds = 0;
+        clearInterval(currentCountdown);
+        currentCountdown = null;
+        takeScreenshot();
+    }
+}
+
+function takeScreenshot() {
     const video = document.getElementById("video");
     const canvas = document.createElement("canvas");
     // scale the canvas accordingly
@@ -83,14 +105,14 @@ function setCountdown(time) {
     canvas.height = video.videoHeight;
     // draw the video at that frame
     canvas.getContext('2d')
-        .drawImage(document.getElementById("output-1"), 0, 0, canvas.width, canvas.height);
+        .drawImage(video, 0, 0, canvas.width, canvas.height);
     // convert it to a usable data URL
     const dataURL = canvas.toDataURL(); //now do smth with this img url
 
     const screenshotPic = document.getElementById("screenshot-pic");
     screenshotPic.src = dataURL;
 
-    document.getElementById('overlay').style.display = 'flex';
+    document.getElementById('overlay').classList.add('active');
 
     currentCountdown = null;
 }
@@ -98,4 +120,16 @@ function setCountdown(time) {
 function openImageInNewTab(e) {
     var w = window.open("");
     w.document.write(e.outerHTML);
+}
+
+function hideOverlay() {
+    document.getElementById('overlay').classList.remove('active');
+}
+
+function setTimer(time, e) {
+    milliseconds = time;
+
+    // properly set active class
+    document.querySelector('.btn-dropdown.active').classList.remove('active');
+    e.classList.add('active');
 }

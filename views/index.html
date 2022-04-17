@@ -5,7 +5,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/static/css/styles.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +13,7 @@
 </head>
 
 <body>
-    <div id="overlay">
+    <div id="overlay" onclick="hideOverlay();">
         <img id="screenshot-pic" alt="screenshot" onclick="openImageInNewTab(this);">
     </div>
     <br>
@@ -27,19 +26,24 @@
             <video id="video" width="642" height="428" style="display:none;"></video>
             <canvas id="output-1" width="642" height="428"></canvas>
         </div>
-        <div class="square" style="background-color: rgb(203, 92, 92); float: right;">
-            <video id="video" width="642" height="428" style="display:none;"></video>
-            <canvas id="output-1" width="642" height="428"></canvas>
-        </div>
     </div>
     <div class="botpanel">
-        <button type="button" class="button" onclick=button1funct()>
-            <font size="+2">Add Friend</font>
-        </button>
-        <button type="button3" class="button" onclick="button2funct()">
-            <font size="+2">Set Timer</font>
-        </button>
-        <button type="button2" class="button" onclick="button3funct()">
+        <div class="dropdown">
+            <div class="dropdown-container">
+                <div id="second-grid">
+                    <button class="button btn-dropdown active" onclick="setTimer(1000, this);">1 second</button>
+                    <button class="button btn-dropdown" onclick="setTimer(3000, this);">3 seconds</button>
+                    <button class="button btn-dropdown" onclick="setTimer(5000, this);">5 seconds</button>
+                    <button class="button btn-dropdown" onclick="setTimer(10000, this);">10 seconds</button>
+
+                </div>
+            </div>
+            <button type="button" class="button" onclick="button2funct()">
+                <font size="+2">Set Timer</font>
+            </button>
+        </div>
+        <span id="countdown"></span>
+        <button type="button" class="button" onclick="button3funct()">
             <font size="+2">Start Collage</font>
         </button>
 
