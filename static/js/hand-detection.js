@@ -76,6 +76,16 @@ function onOpenCvLoad() {
 }
 
 function setCountdown(time) {
+    const videos = document.getElementById("videos");
+    const canvas = document.createElement("canvas");
+    // scale the canvas accordingly
+    canvas.width = videos.videoWidth;
+    canvas.height = videos.videoHeight;
+    // draw the video at that frame
+    canvas.getContext('2d')
+    .drawImage(videos, 0, 0, canvas.width, canvas.height);
+    // convert it to a usable data URL
+    const dataURL = canvas.toDataURL(); //now do smth with this img url
     console.log('Picture taken!');
 
     currentCountdown = null;
