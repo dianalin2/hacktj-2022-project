@@ -66,7 +66,7 @@ function onOpenCvLoad() {
                     }
 
                     if (hands.size() > 0 && currentCountdown == null) {
-                        currCountdown = milliseconds;
+                        count = milliseconds;
                         document.getElementById('countdown').innerHTML = milliseconds / 1000;
                         currentCountdown = setInterval(setCountdown, 1000);
                     }
@@ -82,14 +82,14 @@ function onOpenCvLoad() {
     }
 }
 
-let currCountdown = milliseconds;
+let count = milliseconds;
 
 function setCountdown(time) {
-    currCountdown -= 1000;
+    count -= 1000;
 
-    document.getElementById('countdown').innerHTML = currCountdown / 1000;
+    document.getElementById('countdown').innerHTML = count / 1000;
 
-    if (currCountdown <= 0) {
+    if (count <= 0) {
         milliseconds = 0;
         clearInterval(currentCountdown);
         currentCountdown = null;

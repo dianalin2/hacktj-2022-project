@@ -53,7 +53,7 @@ body {
 
 .botpanel {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-wrap: wrap;
   width: 100%;
   gap: 1em;
