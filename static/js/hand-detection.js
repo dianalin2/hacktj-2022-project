@@ -56,7 +56,7 @@ function onOpenCvLoad() {
 
                     let msize = new cv.Size(0, 0);
 
-                    handCascade.detectMultiScale(gray, hands, 1.1, 15, 0, msize, msize);
+                    handCascade.detectMultiScale(gray, hands, 1.1, 10, 0, msize, msize);
 
                     for (let i = 0; i < hands.size(); ++i) {
                         let point1 = new cv.Point(hands.get(i).x, hands.get(i).y);
